@@ -10,8 +10,10 @@ def shortener(request):
         data = request.POST
         long_url = data.get('long_url')
         if UrlShortner.objects.filter(long_url=long_url):
-            messages.info(request,"This URL is already Shortened . ")
-            return redirect('/')
+            messages.info(request,"This URL is already Shortened to : ")
+            short = UrlShortner.objects.get(long_url=long_url)
+            context = {'short_code':short.short_code}
+            return render(request,'index.html',context)
         else :
             short_code = uuid.uuid4().hex[:10]
             while UrlShortner.objects.filter(short_code=short_code):
@@ -21,8 +23,9 @@ def shortener(request):
                 long_url =long_url,
                 short_code=short_code
             )
-            messages.info(request,"Your URL is Successfully Shortened.")
-            return redirect('/')
+            context = {'short_code':short_code}
+            messages.info(request,"Your URL is Successfully Shortened to :")
+            return render(request,'index.html',context)
 
               
     return render(request,'index.html')

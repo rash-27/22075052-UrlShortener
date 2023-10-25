@@ -12,6 +12,9 @@
       <div class="alert alert-primary" role="alert">
        {% for message in messages %}
        {{message}}
+       {% if short_code %}
+       <b>http://127.0.0.1:8000/{{short_code}}</b>
+       {% endif %}
        {% endfor %}
       </div>
       {% endif %}
