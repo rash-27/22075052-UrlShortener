@@ -5,22 +5,21 @@
 {% block nav %}<a href="/" class="btn btn-danger">Home</a>{% endblock %}
 {% block body %}
 
-<div class="container">
+
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Sno</th>
         <th scope="col">Long URL</th>
         <th scope="col">Short URL</th>
+        <th scope="col">Options</th>
       </tr>
     </thead>
     <tbody>
         {% for i in urls %}
       <tr>
-        <th scope="row">1</th>
         <td>{{i.long_url}}</td>
         <td>http://127.0.0.1:8000/{{i.short_code}}</td>
-        
+        <td><a href="/api/delete_url/{{i.short_code}}" class="btn btn-danger">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>

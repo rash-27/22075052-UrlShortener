@@ -31,3 +31,10 @@ def display(request):
     data = UrlShortner.objects.all()
     context ={ 'urls':data }
     return render(request,'display.html',context)
+
+
+
+def delete_url(request,short_code):
+    querySet = UrlShortner.objects.get(short_code = short_code)
+    querySet.delete()
+    return redirect('/api/all_urls')
