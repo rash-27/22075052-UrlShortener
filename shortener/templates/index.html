@@ -2,22 +2,17 @@
 
 {% block title %} UrlShortener | Home {% endblock %}
 
+{%block nav%}<a href="api/all_urls" class="btn btn-primary my-2 my-sm-0" >All URL's</a>{% endblock %}
 {% block body %}
 
+
 <div class="container my-2">
-    <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand">URL Shortener</a>
-        <form class="form-inline">
-            
-          <a href="/all_urls" class="btn btn-primary my-2 my-sm-0" >All URL's</a>
-        </form>
-      </nav>
-      <hr>
+    
       {% if messages %}
       <div class="alert alert-primary" role="alert">
-       {% if message in messages %}
+       {% for message in messages %}
        {{message}}
-       {% endif %}
+       {% endfor %}
       </div>
       {% endif %}
     <h2>Enter Your URL here</h2>

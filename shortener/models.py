@@ -4,5 +4,5 @@ from django.db import models
 
 class UrlShortner(models.Model):
     long_url = models.URLField(primary_key=True)
-    short_code = models.CharField(unique=True,max_length=300)
+    short_code = models.CharField(unique=True,max_length=30)
 

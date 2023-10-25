@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
-from .models import *
+from .models import UrlShortner
 import uuid
 
 # Create your views here.
@@ -13,15 +13,21 @@ def shortener(request):
             messages.info(request,"This URL is already Shortened . ")
             return redirect('/')
         else :
-            short_url = uuid.uuid4()
-            while not UrlShortner.objects.filter(short_url=short_url):
-                short_url = uuid.uuid4()
+            short_code = uuid.uuid4().hex[:10]
+            while UrlShortner.objects.filter(short_code=short_code):
+                print(short_code)
+                short_code = uuid.uuid4().hex[:10]
             UrlShortner.objects.create(
                 long_url =long_url,
-                short_url="http://127.0.0.1:8000/"+short_url
+                short_code=short_code
             )
-            messages.info(request,f"Your URL is Successfully Shortened to http://127.0.0.1:8000/{short_url}.")
+            messages.info(request,"Your URL is Successfully Shortened.")
             return redirect('/')
 
               
     return render(request,'index.html')
+
+def display(request):
+    data = UrlShortner.objects.all()
+    context ={ 'urls':data }
+    return render(request,'display.html',context)

@@ -11,6 +11,16 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <div class="container my-3">
+        <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand">URL Shortener</a>
+
+        <form class="form-inline">
+            
+          {% block nav %}{% endblock %}
+        </form>
+      </nav>
+      <hr></div>
 
     {% block body %}{% endblock %}
     <!-- Optional JavaScript; choose one of the two! -->
