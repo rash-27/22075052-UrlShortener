@@ -38,3 +38,7 @@ def delete_url(request,short_code):
     querySet = UrlShortner.objects.get(short_code = short_code)
     querySet.delete()
     return redirect('/api/all_urls')
+
+def sender(request,short_code):
+    querySet = UrlShortner.objects.get(short_code = short_code)
+    return redirect(querySet.long_url)
